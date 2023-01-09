@@ -1,47 +1,37 @@
-
-// Insertion sort is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. The array is virtually 
-// split into a sorted and an unsorted part. Values from the unsorted part are picked and placed at the correct position in the sorted part.
-
-
-// process->
-// initially the first element of the array is the only element in the sorted array...
-// im each iteration we will store the value of the first element of the unsorted array in a variable ...say temp...
-// in each iteration we will compare this temp with the sorted array ..in this way we will put the element in its position
-
 #include<iostream>
+#include<vector>
+#include<ctime>
+
 using namespace std;
-
-
-
-void insertionSort(int arr[],int n){
-
-    for(int i=1;i<n;i++){
-        int temp = arr[i];
-        int j = i-1;
-        while(j>=0 && arr[j]>temp){
-            arr[j+1] = arr[j];
-            j--;
-        }
-        arr[j+1] = temp;
-    }
-
-}
 
 int main()
 {
-    int arr[] = {5,4,10,1,6,2};
-    int n = sizeof(arr)/sizeof(arr[0]);
+    vector<int> elements;
+    int key,i,j,n,ele;
+    //cout<<"Enter number of elements";
+    cin>>n;
+    for(i=0;i<n;i++)
+{
+        cin>>ele;
+	elements.push_back(ele);
+}
+	clock_t tStart = clock();    
+    for(j=1;j<n;j++)
+    {
+        key = elements[j];
+        i = j-1;
+        while((i>=0)&&(elements[i]>key))
+        {
+            elements[i+1] = elements[i];
+            i = i-1;
+        }
+        elements[i+1] = key;
+    }
     
-    cout<<"Array before sorting is :"<<endl;
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }
-    cout<<endl<<endl;
-    insertionSort(arr,n);
-
-    cout<<"Array after sorting is :"<<endl;
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }
-    return 0;
+double time1=(double)(clock() - tStart)/CLOCKS_PER_SEC;
+	cout<<"Time taken is "<<time1<<endl;
+   /*for(i=0;i<n;i++)
+    {
+        cout<<elements[i]<<" ";
+    }*/
 }
